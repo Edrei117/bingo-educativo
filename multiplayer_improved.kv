@@ -1,0 +1,203 @@
+#:kivy 2.0.0
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+<MultiplayerScreenImproved>:
+    canvas.before:
+        Color:
+            rgba: 0.05, 0.05, 0.05, 1  # Fondo más oscuro
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: 'multiplayer_improved'
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: dp(24)
+        spacing: dp(16)
+        md_bg_color: (0.05, 0.05, 0.05, 1)
+
+        # Header
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(120)
+
+            MDLabel:
+                text: "MULTIJUGADOR MEJORADO"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                size_hint_y: None
+                height: dp(60)
+
+            MDLabel:
+                text: "Conecta con otros jugadores para jugar en equipo"
+                halign: "center"
+                font_style: "Caption"
+                theme_text_color: "Custom"
+                text_color: 0.7, 0.7, 0.7, 1
+                size_hint_y: None
+                height: dp(40)
+
+        # Selector de modo
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+
+            MDRaisedButton:
+                text: "WiFi"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.6, 0.8, 1) if root.modo_seleccionado == 'wifi' else (0.3, 0.3, 0.3, 1)
+                on_release: root.seleccionar_modo('wifi')
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "Bluetooth"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.8, 0.2, 1) if root.modo_seleccionado == 'bluetooth' else (0.3, 0.3, 0.3, 1)
+                on_release: root.seleccionar_modo('bluetooth')
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Opciones WiFi
+        MDBoxLayout:
+            id: wifi_options
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+            opacity: 1 if root.modo_seleccionado == 'wifi' else 0
+            disabled: False if root.modo_seleccionado == 'wifi' else True
+
+            MDRaisedButton:
+                text: "CREAR SALA"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.8, 0.2, 1)
+                on_release: root.crear_sala()
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "UNIRSE A SALA"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.6, 0.8, 1)
+                on_release: root.unirse_sala()
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Opciones Bluetooth (ocultas por defecto)
+        MDBoxLayout:
+            id: bluetooth_options
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+            opacity: 1 if root.modo_seleccionado == 'bluetooth' else 0
+            disabled: False if root.modo_seleccionado == 'bluetooth' else True
+
+            MDRaisedButton:
+                text: "CREAR SALA BT"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.8, 0.2, 1)
+                on_release: root.crear_sala_bluetooth()
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "UNIRSE BT"
+                size_hint_x: 0.5
+                md_bg_color: (0.2, 0.6, 0.8, 1)
+                on_release: root.unirse_sala_bluetooth()
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Información de conexión
+        MDCard:
+            orientation: 'vertical'
+            padding: dp(16)
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(160)
+            md_bg_color: (0.1, 0.1, 0.1, 1)
+
+            MDLabel:
+                id: connection_status
+                text: root.connection_status
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                size_hint_y: None
+                height: dp(32)
+
+            MDLabel:
+                id: room_info
+                text: root.room_info
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.8, 0.8, 0.8, 1
+                size_hint_y: None
+                height: dp(24)
+
+            MDLabel:
+                id: local_ip_label
+                text: root.local_ip
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.6, 0.8, 1, 1
+                size_hint_y: None
+                height: dp(20)
+
+            MDLabel:
+                id: players_count_label
+                text: root.player_count
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.7, 1, 0.7, 1
+                size_hint_y: None
+                height: dp(20)
+
+        # Lista de jugadores
+        MDLabel:
+            text: "Jugadores Conectados:"
+            halign: "left"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: dp(24)
+
+        ScrollView:
+            size_hint_y: 0.3
+            MDBoxLayout:
+                id: players_list
+                orientation: 'vertical'
+                spacing: dp(8)
+                size_hint_y: None
+                height: self.minimum_height
+
+        # Botones de acción
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+
+            MDRaisedButton:
+                id: start_game_button
+                text: "INICIAR PARTIDA"
+                md_bg_color: (0.2, 0.8, 0.2, 1)
+                on_release: root.iniciar_juego()
+                size_hint_x: 0.7
+                opacity: 0
+                disabled: True
+
+            MDRaisedButton:
+                text: "Volver"
+                md_bg_color: (0.6, 0.6, 0.6, 1)
+                on_release: root.volver()
+                size_hint_x: 0.3 

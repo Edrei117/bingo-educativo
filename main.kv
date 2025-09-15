@@ -1,0 +1,856 @@
+#:kivy 2.0.0
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import CardTransition kivy.uix.screenmanager.CardTransition
+#:import SoundLoader kivy.core.audio.SoundLoader
+#:import Image kivy.uix.image.Image
+#:import Animation kivy.animation.Animation
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+<LoginScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: 'login'
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: dp(16)
+        spacing: dp(16)
+        md_bg_color: 0.1, 0.1, 0.1, 1
+
+        MDLabel:
+            text: "CONFIGURACIÓN DEL JUEGO"
+            halign: "center"
+            font_style: "H4"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(16)
+            font_size: sp(28)
+
+        MDTextField:
+            id: player_name
+            hint_text: "Tu nombre"
+            helper_text: "Ingresa tu nombre para comenzar"
+            helper_text_mode: "on_error"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": .5}
+            font_size: sp(18)
+
+        MDLabel:
+            text: "Dificultad de la IA:"
+            halign: "left"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(8)
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(10)
+            size_hint_y: None
+            height: dp(48)
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: easy_difficulty
+                    active: True
+                    on_active: root.update_difficulty("Facil") if self.active else None
+
+                MDLabel:
+                    text: "Fácil"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: moderate_difficulty
+                    on_active: root.update_difficulty("Moderado") if self.active else None
+
+                MDLabel:
+                    text: "Moderado"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: hard_difficulty
+                    on_active: root.update_difficulty("Dificil") if self.active else None
+
+                MDLabel:
+                    text: "Difícil"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+        MDLabel:
+            text: "Número de IAs:"
+            halign: "left"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(8)
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(10)
+            size_hint_y: None
+            height: dp(48)
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: one_ai
+                    active: True
+                    on_active: root.update_num_ais(1) if self.active else None
+
+                MDLabel:
+                    text: "1 IA"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: three_ais
+                    on_active: root.update_num_ais(3) if self.active else None
+
+                MDLabel:
+                    text: "3 IAs"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(5)
+                size_hint_x: 0.33
+
+                MDSwitch:
+                    id: nine_ais
+                    on_active: root.update_num_ais(9) if self.active else None
+
+                MDLabel:
+                    text: "9 IAs"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+        MDRaisedButton:
+            text: "COMENZAR JUEGO"
+            size_hint_x: 0.8
+            pos_hint: {"center_x": .5}
+            md_bg_color: 0.2, 0.8, 0.2, 1
+            on_release: root.start_game(player_name.text)
+            font_style: "Button"
+            font_size: sp(20)
+
+<MainScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    # Imagen de fondo
+    Image:
+        source: 'assets/images/fondo_principal.jpg'
+        pos: self.pos
+        size: self.size
+        allow_stretch: True
+        keep_ratio: False
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: dp(16)
+        spacing: dp(16)
+        size_hint: 1, 1
+        md_bg_color: 0.1, 0.1, 0.1, 0.7
+
+        MDLabel:
+            text: "BINGO CULTURAL"
+            halign: "center"
+            font_style: "H3"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(16)
+            font_size: sp(32)
+            pos_hint: {"center_y": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(12)
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_y": .5}
+
+            MDRaisedButton:
+                text: "JUGAR"
+                size_hint_x: 0.8
+                size_hint_y: None
+                height: dp(44)
+                pos_hint: {"center_x": .5}
+                md_bg_color: 0.2, 0.6, 0.8, 1
+                on_release: root.jugar()
+                font_style: "Button"
+                font_size: sp(18)
+
+            MDRaisedButton:
+                text: "MULTIJUGADOR"
+                size_hint_x: 0.8
+                size_hint_y: None
+                height: dp(44)
+                pos_hint: {"center_x": .5}
+                md_bg_color: 0.8, 0.2, 0.2, 1
+                on_release: root.mostrar_multijugador()
+                font_style: "Button"
+                font_size: sp(18)
+
+            MDRaisedButton:
+                text: "INSTRUCCIONES"
+                size_hint_x: 0.8
+                size_hint_y: None
+                height: dp(44)
+                pos_hint: {"center_x": .5}
+                md_bg_color: 0.8, 0.6, 0.2, 1
+                on_release: root.mostrar_instrucciones()
+                font_style: "Button"
+                font_size: sp(18)
+
+<GameScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 0.7  # Oscurece un poco para mejor contraste
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+    # Imagen de fondo
+    Image:
+        source: 'assets/images/backgrounds/fondo_madera.jpg'
+        pos: self.pos
+        size: self.size
+        allow_stretch: True
+        keep_ratio: False
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: '20dp'
+        spacing: '16dp'
+        size_hint: 1, 1
+        md_bg_color: 0.1, 0.1, 0.1, 0.7
+
+        MDLabel:
+            text: root.app.player_name if root.app else ''
+            halign: 'center'
+            font_style: 'H5'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(16)
+            font_size: '22sp'
+            pos_hint: {"center_y": .5}
+
+        MDLabel:
+            id: question_text
+            text: 'Presiona "Nuevo Juego" para comenzar'
+            halign: 'center'
+            font_style: 'H6'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: dp(150)
+            font_size: '16sp'
+            pos_hint: {"center_y": .5}
+            text_size: self.width * 0.8, None
+
+        # Reloj regresivo visual
+        MDFloatLayout:
+            size_hint_y: None
+            height: '120dp'
+            MDCard:
+                size_hint: None, None
+                size: '120dp', '120dp'
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 2
+                md_bg_color: 0.2, 0.4, 1, 0.25
+                radius: [60, 60, 60, 60]
+                padding: 0
+            MDCard:
+                size_hint: None, None
+                size: '100dp', '100dp'
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 4
+                md_bg_color: 0.2, 1, 0.4, 0.25
+                radius: [50, 50, 50, 50]
+                padding: 0
+            MDCard:
+                id: timer_circle
+                size_hint: None, None
+                size: '80dp', '80dp'
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                elevation: 8
+                md_bg_color: 1, 0.3, 0.3, 1
+                radius: [40, 40, 40, 40]
+                padding: 0
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: 1, 1
+                    MDLabel:
+                        id: timer_label
+                        text: ''
+                        halign: 'center'
+                        valign: 'middle'
+                        font_style: 'H2'
+                        theme_text_color: 'Custom'
+                        text_color: 1, 1, 1, 1
+                        size_hint: 1, 1
+                        font_size: '36sp'
+
+        MDBoxLayout:
+            id: options_container
+            orientation: 'vertical'
+            spacing: '8dp'
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5}
+
+        MDLabel:
+            id: game_messages
+            text: ''
+            halign: 'center'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: self.texture_size[1] + dp(10)
+            font_size: '16sp'
+            pos_hint: {"center_y": .5}
+
+        MDCard:
+            size_hint_x: 1
+            size_hint_y: None
+            height: '220dp'
+            padding: '10dp'
+            spacing: '10dp'
+            md_bg_color: 0.2, 0.2, 0.2, 1
+
+            MDGridLayout:
+                id: player_card_grid
+                cols: 2
+                rows: 4
+                spacing: '5dp'
+                padding: '5dp'
+                size_hint_y: None
+                height: '200dp'
+
+            MDRaisedButton:
+                id: bingo_button
+                text: 'Bingo'
+                md_bg_color: 0.2, 0.6, 0.2, 1
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1
+                size_hint_x: 1
+                size_hint_y: None
+                height: '40dp'
+                on_release: root.verificar_bingo_manual()
+                font_size: '16sp'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: '10dp'
+            size_hint_y: None
+            height: '50dp'
+
+            MDRaisedButton:
+                text: 'Nuevo Juego'
+                on_release: root.start_new_game()
+                size_hint_x: 0.5
+                font_size: '16sp'
+
+            MDRaisedButton:
+                text: 'Inicio'
+                on_release: root.go_home()
+                size_hint_x: 0.5
+                font_size: '16sp'
+
+<BingoButton@MDRaisedButton>:
+    size_hint: 1, 1
+    font_size: '12sp'
+    md_bg_color: 0.2, 0.2, 0.2, 1
+    theme_text_color: "Custom"
+    text_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: 0.3, 0.3, 0.3, 1
+        Line:
+            width: 1
+            rectangle: self.x, self.y, self.width, self.height
+
+<MultiplayerScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.05, 0.05, 0.05, 1  # Fondo más oscuro
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    name: 'multiplayer'
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: dp(24)
+        spacing: dp(16)
+        md_bg_color: 0.05, 0.05, 0.05, 1
+
+        # Header
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(120)
+
+            MDLabel:
+                text: "MULTIJUGADOR"
+                halign: "center"
+                font_style: "H4"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                size_hint_y: None
+                height: dp(60)
+
+            MDLabel:
+                text: "Conecta con otros jugadores para jugar en equipo"
+                halign: "center"
+                font_style: "Caption"
+                theme_text_color: "Custom"
+                text_color: 0.7, 0.7, 0.7, 1
+                size_hint_y: None
+                height: dp(40)
+
+        # Selector de modo
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+
+            MDRaisedButton:
+                text: "WiFi"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.6, 0.8, 1
+                on_release: root.seleccionar_modo('wifi')
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "Bluetooth"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.8, 0.2, 1
+                on_release: root.seleccionar_modo('bluetooth')
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Opciones WiFi
+        MDBoxLayout:
+            id: wifi_options
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+            opacity: 1 if root.modo_seleccionado == 'wifi' else 0
+            disabled: False if root.modo_seleccionado == 'wifi' else True
+
+            MDRaisedButton:
+                text: "CREAR SALA"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.8, 0.2, 1
+                on_release: root.crear_sala()
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "UNIRSE A SALA"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.6, 0.8, 1
+                on_release: root.unirse_sala()
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Opciones Bluetooth (ocultas por defecto)
+        MDBoxLayout:
+            id: bluetooth_options
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+            opacity: 1 if root.modo_seleccionado == 'bluetooth' else 0
+            disabled: False if root.modo_seleccionado == 'bluetooth' else True
+
+            MDRaisedButton:
+                text: "CREAR SALA BT"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.8, 0.2, 1
+                on_release: root.crear_sala_bluetooth()
+                font_style: "Button"
+                font_size: sp(16)
+
+            MDRaisedButton:
+                text: "UNIRSE BT"
+                size_hint_x: 0.5
+                md_bg_color: 0.2, 0.6, 0.8, 1
+                on_release: root.unirse_sala_bluetooth()
+                font_style: "Button"
+                font_size: sp(16)
+
+        # Información de conexión
+        MDCard:
+            orientation: 'vertical'
+            padding: dp(16)
+            spacing: dp(8)
+            size_hint_y: None
+            height: dp(160)
+            md_bg_color: 0.1, 0.1, 0.1, 1
+
+            MDLabel:
+                id: connection_status
+                text: "Estado: Desconectado"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                size_hint_y: None
+                height: dp(32)
+
+            MDLabel:
+                id: room_info
+                text: ""
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.8, 0.8, 0.8, 1
+                size_hint_y: None
+                height: dp(24)
+
+            MDLabel:
+                id: local_ip_label
+                text: ""
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.6, 0.8, 1, 1
+                size_hint_y: None
+                height: dp(20)
+
+            MDLabel:
+                id: players_count_label
+                text: "Jugadores: 0/10"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.7, 1, 0.7, 1
+                size_hint_y: None
+                height: dp(20)
+
+        # Lista de jugadores
+        MDLabel:
+            text: "Jugadores Conectados:"
+            halign: "left"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            size_hint_y: None
+            height: dp(24)
+
+        ScrollView:
+            size_hint_y: 0.3
+            MDBoxLayout:
+                id: players_list
+                orientation: 'vertical'
+                spacing: dp(8)
+                size_hint_y: None
+                height: self.minimum_height
+
+        # Botones de acción
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(12)
+            size_hint_y: None
+            height: dp(56)
+
+            MDRaisedButton:
+                id: start_game_button
+                text: "INICIAR PARTIDA"
+                md_bg_color: 0.2, 0.8, 0.2, 1
+                on_release: root.iniciar_juego()
+                size_hint_x: 0.7
+                opacity: 0
+                disabled: True
+
+            MDRaisedButton:
+                text: "Volver"
+                md_bg_color: 0.6, 0.6, 0.6, 1
+                on_release: root.volver()
+                size_hint_x: 0.3
+
+<BluetoothScreen>:
+    name: 'bluetooth_screen'
+    on_enter: root.on_enter()
+    on_leave: root.on_leave()
+
+<LoadingScreen>:
+    name: 'loading'
+    on_enter: root.animar_loading()
+    canvas.before:
+        Color:
+            rgba: 0.04, 0.06, 0.10, 1.0  # Fondo más oscuro
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        # Líneas horizontales Tron
+        Color:
+            rgba: 0.0, 0.85, 1, 0.32  # Azul eléctrico intenso
+        Rectangle:
+            pos: self.x, self.y + self.height * 0.2
+            size: self.width, 2
+        Rectangle:
+            pos: self.x, self.y + self.height * 0.4
+            size: self.width, 2
+        Rectangle:
+            pos: self.x, self.y + self.height * 0.6
+            size: self.width, 2
+        Rectangle:
+            pos: self.x, self.y + self.height * 0.8
+            size: self.width, 2
+        # Líneas diagonales Tron
+        Color:
+            rgba: 0.0, 0.85, 1, 0.18
+        Line:
+            points: self.x, self.y, self.x + self.width, self.y + self.height
+            width: 2
+        Line:
+            points: self.x + self.width, self.y, self.x, self.y + self.height
+            width: 2
+    FloatLayout:
+        # Puntos de luz Tron (destellos)
+        Widget:
+            id: glow1
+            size_hint: None, None
+            size: 18, 18
+            pos: 100, 100
+            canvas:
+                Color:
+                    rgba: 0.0, 0.85, 1, 0.7
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow2
+            size_hint: None, None
+            size: 14, 14
+            pos: 400, 200
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.5
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow3
+            size_hint: None, None
+            size: 22, 22
+            pos: 700, 300
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.6
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow4
+            size_hint: None, None
+            size: 10, 10
+            pos: 200, 400
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.4
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow5
+            size_hint: None, None
+            size: 16, 16
+            pos: 600, 120
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.6
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow6
+            size_hint: None, None
+            size: 20, 20
+            pos: 300, 350
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.5
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow7
+            size_hint: None, None
+            size: 12, 12
+            pos: 500, 500
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.4
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        Widget:
+            id: glow8
+            size_hint: None, None
+            size: 15, 15
+            pos: 800, 250
+            canvas:
+                Color:
+                    rgba: 0.2, 0.8, 1, 0.5
+                Ellipse:
+                    pos: self.pos
+                    size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: dp(40)
+            padding: dp(80)
+            Widget:
+                size_hint_y: 0.2
+            MDLabel:
+                id: loading_text
+                text: 'LOADING'
+                halign: 'center'
+                font_style: 'H2'
+                theme_text_color: 'Custom'
+                text_color: 0.2, 0.7, 1, 1
+                size_hint_y: None
+                height: dp(80)
+                opacity: 0
+                font_size: sp(60)
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: dp(80)
+                Widget:
+                    size_hint_y: 0.5
+                RelativeLayout:
+                    size_hint_y: None
+                    height: dp(44)
+                    size_hint_x: 1
+                    MDProgressBar:
+                        id: loading_bar
+                        value: 0
+                        color: 0.0, 0.7, 1, 1  # Azul más brillante
+                        height: dp(44)
+                        max: 100
+                        size_hint_y: None
+                        size_hint_x: 0.85
+                        pos_hint: {'center_x': 0.5}
+                    MDLabel:
+                        id: loading_percent
+                        text: '0%'
+                        halign: 'center'
+                        valign: 'middle'
+                        theme_text_color: 'Custom'
+                        text_color: 1, 1, 1, 1
+                        font_size: sp(22)
+                        size_hint_x: 1
+                        size_hint_y: 1
+                        text_size: self.size
+                        center_x: loading_bar.center_x
+                        center_y: loading_bar.center_y
+                        opacity: 1
+                    Widget:
+                        id: bar_glow
+                        size_hint: None, None
+                        size: 40, 44
+                        pos: (loading_bar.x + (loading_bar.width-40) * (loading_bar.value/loading_bar.max), loading_bar.y)
+                        canvas:
+                            Color:
+                                rgba: 0.2, 0.9, 1, 0.5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+            Widget:
+                size_hint_y: 0.08
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.92
+                pos_hint: {'center_x': 0.5}
+                padding: dp(8), dp(8), dp(8), dp(8)
+                canvas.before:
+                    Color:
+                        rgba: 0, 0.1, 0.2, 0.5
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [12]
+                MDLabel:
+                    id: loading_quote
+                    text: ''
+                    halign: 'center'
+                    theme_text_color: 'Custom'
+                    text_color: 1, 1, 1, 1  # Blanco
+                    font_style: 'Subtitle1'
+                    font_size: sp(18)
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    opacity: 1
+                    italic: True
+                    markup: True
+            Widget:
+                size_hint_y: 0.08
+            MDLabel:
+                id: loading_tap
+                text: 'Presiona la pantalla para empezar'
+                halign: 'center'
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 0.7
+                font_size: sp(20)
+                size_hint_y: None
+                height: dp(40)
+                opacity: 0
+            Widget:
+                size_hint_y: 0.1 
+
+<SplashScreen>:
+    name: 'splash'
+    canvas.before:
+        Color:
+            rgba: 0, 0, 0, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Image:
+        source: 'assets/proedu.png'
+        size_hint: 0.6, 0.6
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        # Configuración para evitar distorsión de imagen
+        allow_stretch: True
+        keep_ratio: True 
