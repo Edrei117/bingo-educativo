@@ -1,0 +1,35 @@
+{
+    "categoria": "ciencia",
+    "preguntas": [
+        {
+            "pregunta": "¿Cuál es el planeta más grande del sistema solar?",
+            "opciones": [
+                "Tierra",
+                "Júpiter",
+                "Marte",
+                "Saturno"
+            ],
+            "respuesta_correcta": "Júpiter"
+        },
+        {
+            "pregunta": "¿Qué gas es esencial para la respiración humana?",
+            "opciones": [
+                "Oxígeno",
+                "Nitrógeno",
+                "Dióxido de carbono",
+                "Hidrógeno"
+            ],
+            "respuesta_correcta": "Oxígeno"
+        },
+        {
+            "pregunta": "¿Cómo se llama el proceso por el cual las plantas producen su alimento?",
+            "opciones": [
+                "Fotosíntesis",
+                "Respiración",
+                "Digestión",
+                "Fermentación"
+            ],
+            "respuesta_correcta": "Fotosíntesis"
+        }
+    ]
+} 

@@ -1,0 +1,35 @@
+{
+    "categoria": "frases_celebres",
+    "preguntas": [
+        {
+            "pregunta": "¿Quién dijo 'Pienso, luego existo'?",
+            "opciones": [
+                "Sócrates",
+                "René Descartes",
+                "Platón",
+                "Aristóteles"
+            ],
+            "respuesta_correcta": "René Descartes"
+        },
+        {
+            "pregunta": "¿Quién dijo 'La imaginación es más importante que el conocimiento'?",
+            "opciones": [
+                "Isaac Newton",
+                "Albert Einstein",
+                "Galileo Galilei",
+                "Stephen Hawking"
+            ],
+            "respuesta_correcta": "Albert Einstein"
+        },
+        {
+            "pregunta": "¿Quién dijo 'El conocimiento es poder'?",
+            "opciones": [
+                "Francis Bacon",
+                "Galileo Galilei",
+                "Marie Curie",
+                "Isaac Newton"
+            ],
+            "respuesta_correcta": "Francis Bacon"
+        }
+    ]
+} 

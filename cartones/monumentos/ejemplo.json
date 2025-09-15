@@ -1,0 +1,35 @@
+{
+    "categoria": "monumentos",
+    "preguntas": [
+        {
+            "pregunta": "¿Dónde se encuentra la Torre Eiffel?",
+            "opciones": [
+                "Londres",
+                "París",
+                "Roma",
+                "Madrid"
+            ],
+            "respuesta_correcta": "París"
+        },
+        {
+            "pregunta": "¿Cuál es el monumento más famoso de Egipto?",
+            "opciones": [
+                "Torre de Pisa",
+                "Gran Muralla",
+                "Pirámides de Giza",
+                "Coliseo"
+            ],
+            "respuesta_correcta": "Pirámides de Giza"
+        },
+        {
+            "pregunta": "¿En qué país está la Estatua de la Libertad?",
+            "opciones": [
+                "Francia",
+                "Estados Unidos",
+                "Italia",
+                "Brasil"
+            ],
+            "respuesta_correcta": "Estados Unidos"
+        }
+    ]
+} 

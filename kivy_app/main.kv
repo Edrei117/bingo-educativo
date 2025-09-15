@@ -1,0 +1,25 @@
+#:kivy 2.0.0
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        
+        Label:
+            text: 'Bingo Quiz'
+            font_size: 24
+            size_hint_y: None
+            height: 50
+            
+        Button:
+            text: 'Iniciar Juego'
+            size_hint_y: None
+            height: 50
+            on_press: root.manager.current = 'game'
+            
+        Button:
+            text: 'Configuración'
+            size_hint_y: None
+            height: 50
+            on_press: root.manager.current = 'settings' 

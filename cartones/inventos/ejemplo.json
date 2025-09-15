@@ -1,0 +1,35 @@
+{
+    "categoria": "inventos",
+    "preguntas": [
+        {
+            "pregunta": "¿Quién inventó la bombilla eléctrica?",
+            "opciones": [
+                "Nikola Tesla",
+                "Thomas Edison",
+                "Alexander Graham Bell",
+                "Isaac Newton"
+            ],
+            "respuesta_correcta": "Thomas Edison"
+        },
+        {
+            "pregunta": "¿En qué siglo se inventó la imprenta?",
+            "opciones": [
+                "XV",
+                "XVI",
+                "XIV",
+                "XVII"
+            ],
+            "respuesta_correcta": "XV"
+        },
+        {
+            "pregunta": "¿Qué invento revolucionó la comunicación en el siglo XIX?",
+            "opciones": [
+                "Teléfono",
+                "Internet",
+                "Radio",
+                "Televisión"
+            ],
+            "respuesta_correcta": "Teléfono"
+        }
+    ]
+} 

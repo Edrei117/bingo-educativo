@@ -1,0 +1,35 @@
+{
+    "categoria": "teologia",
+    "preguntas": [
+        {
+            "pregunta": "¿Quién es considerado el fundador del cristianismo?",
+            "opciones": [
+                "Moisés",
+                "Jesús de Nazaret",
+                "Abraham",
+                "Buda"
+            ],
+            "respuesta_correcta": "Jesús de Nazaret"
+        },
+        {
+            "pregunta": "¿Cuál es el libro sagrado del islam?",
+            "opciones": [
+                "Biblia",
+                "Torá",
+                "Corán",
+                "Vedas"
+            ],
+            "respuesta_correcta": "Corán"
+        },
+        {
+            "pregunta": "¿En qué religión se celebra el Diwali?",
+            "opciones": [
+                "Cristianismo",
+                "Hinduismo",
+                "Islam",
+                "Judaísmo"
+            ],
+            "respuesta_correcta": "Hinduismo"
+        }
+    ]
+} 

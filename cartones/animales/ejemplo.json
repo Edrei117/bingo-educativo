@@ -1,0 +1,45 @@
+{
+    "categoria": "animales",
+    "preguntas": [
+        {
+            "pregunta": "¿Cuál es el animal más grande del mundo?",
+            "opciones": ["Elefante africano", "Ballena azul", "Jirafa", "Rinoceronte blanco"],
+            "respuesta_correcta": "Ballena azul"
+        },
+        {
+            "pregunta": "¿Qué animal puede cambiar de color para camuflarse?",
+            "opciones": ["Camaleón", "Leopardo", "Zebra", "Jirafa"],
+            "respuesta_correcta": "Camaleón"
+        },
+        {
+            "pregunta": "¿Cuál es el único mamífero que puede volar?",
+            "opciones": ["Ardilla voladora", "Murciélago", "Colibrí", "Pterodáctilo"],
+            "respuesta_correcta": "Murciélago"
+        },
+        {
+            "pregunta": "¿Qué animal es conocido como el rey de la selva?",
+            "opciones": ["León", "Tigre", "Elefante", "Gorila"],
+            "respuesta_correcta": "León"
+        },
+        {
+            "pregunta": "¿Cuál es el ave más rápida del mundo?",
+            "opciones": ["Águila", "Halcón peregrino", "Búho", "Colibrí"],
+            "respuesta_correcta": "Halcón peregrino"
+        },
+        {
+            "pregunta": "¿Qué animal pone los huevos más grandes?",
+            "opciones": ["Avestruz", "Gallina", "Pingüino", "Águila"],
+            "respuesta_correcta": "Avestruz"
+        },
+        {
+            "pregunta": "¿Cuál es el animal terrestre más rápido?",
+            "opciones": ["Guepardo", "León", "Caballo", "Tigre"],
+            "respuesta_correcta": "Guepardo"
+        },
+        {
+            "pregunta": "¿Qué animal tiene una memoria excepcional y es símbolo de sabiduría?",
+            "opciones": ["Elefante", "Delfín", "Perro", "Gato"],
+            "respuesta_correcta": "Elefante"
+        }
+    ]
+} 

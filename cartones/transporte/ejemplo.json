@@ -1,0 +1,35 @@
+{
+    "categoria": "transporte",
+    "preguntas": [
+        {
+            "pregunta": "¿Cuál es el medio de transporte más rápido?",
+            "opciones": [
+                "Bicicleta",
+                "Avión",
+                "Barco",
+                "Automóvil"
+            ],
+            "respuesta_correcta": "Avión"
+        },
+        {
+            "pregunta": "¿Qué vehículo se usa en los rieles?",
+            "opciones": [
+                "Tren",
+                "Avión",
+                "Barco",
+                "Bicicleta"
+            ],
+            "respuesta_correcta": "Tren"
+        },
+        {
+            "pregunta": "¿Cuál es el principal medio de transporte en Venecia?",
+            "opciones": [
+                "Góndola",
+                "Metro",
+                "Taxi",
+                "Autobús"
+            ],
+            "respuesta_correcta": "Góndola"
+        }
+    ]
+} 

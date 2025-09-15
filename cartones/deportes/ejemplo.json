@@ -1,0 +1,35 @@
+{
+    "categoria": "deportes",
+    "preguntas": [
+        {
+            "pregunta": "¿En qué deporte se utiliza una raqueta y una pelota amarilla?",
+            "opciones": [
+                "Tenis",
+                "Fútbol",
+                "Baloncesto",
+                "Golf"
+            ],
+            "respuesta_correcta": "Tenis"
+        },
+        {
+            "pregunta": "¿Cuántos jugadores hay en un equipo de fútbol?",
+            "opciones": [
+                "11",
+                "7",
+                "5",
+                "9"
+            ],
+            "respuesta_correcta": "11"
+        },
+        {
+            "pregunta": "¿En qué país se originaron los Juegos Olímpicos?",
+            "opciones": [
+                "Grecia",
+                "Italia",
+                "Estados Unidos",
+                "China"
+            ],
+            "respuesta_correcta": "Grecia"
+        }
+    ]
+} 

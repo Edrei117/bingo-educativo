@@ -1,0 +1,35 @@
+{
+    "categoria": "arte",
+    "preguntas": [
+        {
+            "pregunta": "¿Quién pintó la Mona Lisa?",
+            "opciones": [
+                "Vincent van Gogh",
+                "Leonardo da Vinci",
+                "Pablo Picasso",
+                "Claude Monet"
+            ],
+            "respuesta_correcta": "Leonardo da Vinci"
+        },
+        {
+            "pregunta": "¿A qué movimiento pertenece Salvador Dalí?",
+            "opciones": [
+                "Impresionismo",
+                "Surrealismo",
+                "Cubismo",
+                "Barroco"
+            ],
+            "respuesta_correcta": "Surrealismo"
+        },
+        {
+            "pregunta": "¿Cuál es la técnica de pintar sobre yeso húmedo?",
+            "opciones": [
+                "Óleo",
+                "Acuarela",
+                "Fresco",
+                "Témpera"
+            ],
+            "respuesta_correcta": "Fresco"
+        }
+    ]
+} 

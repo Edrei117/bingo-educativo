@@ -1,0 +1,35 @@
+{
+    "categoria": "matematicas",
+    "preguntas": [
+        {
+            "pregunta": "¿Cuánto es 7 x 8?",
+            "opciones": [
+                "54",
+                "56",
+                "64",
+                "58"
+            ],
+            "respuesta_correcta": "56"
+        },
+        {
+            "pregunta": "¿Cuál es el valor de pi (aproximado a dos decimales)?",
+            "opciones": [
+                "3.14",
+                "2.72",
+                "1.62",
+                "3.41"
+            ],
+            "respuesta_correcta": "3.14"
+        },
+        {
+            "pregunta": "¿Cómo se llama el polígono de cinco lados?",
+            "opciones": [
+                "Hexágono",
+                "Pentágono",
+                "Cuadrado",
+                "Octágono"
+            ],
+            "respuesta_correcta": "Pentágono"
+        }
+    ]
+} 
